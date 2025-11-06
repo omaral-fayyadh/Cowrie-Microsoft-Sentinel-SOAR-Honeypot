@@ -1,1 +1,1 @@
-# Cowrie-Microsoft-Sentinel-soar-honeypot
+# Cowrie-Microsoft-Sentinel-SOAR-Honeypot
