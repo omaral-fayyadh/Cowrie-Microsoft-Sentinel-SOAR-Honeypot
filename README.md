@@ -44,6 +44,8 @@ Logic App (Playbook)
   Parse Entities → Filter IPs → Append Summary → Post Comment
 
 
+<br>
+
 ---
 
 ## 🎯 Project Objectives
@@ -55,6 +57,8 @@ Logic App (Playbook)
 ✅ Automate enrichment inside the incident response workflow  
 ✅ Demonstrate **SOAR and Cloud Security Engineering** skills  
 ✅ Showcase an **end-to-end defensive architecture**
+
+<br>
 
 
 
