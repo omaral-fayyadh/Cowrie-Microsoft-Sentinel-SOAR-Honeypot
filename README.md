@@ -168,8 +168,9 @@ sudo docker run -d --name cowrie \
   -p 2222:2222 -p 2223:2223 \
   cowrie/cowrie:latest
 
-View live logs:
+# View logs
 sudo docker logs -f cowrie
+
 ```
 
 📥 Log Ingestion to Sentinel
