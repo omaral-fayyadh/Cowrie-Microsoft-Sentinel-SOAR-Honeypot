@@ -205,27 +205,27 @@ Cowrie_CL_CL
 ---
 This Logic App parses incident entities, loops through indicators, extracts IPs, builds a summary, and posts it back into the incident.
 
-🧩 Workflow Steps
----
-Trigger: Sentinel incident
+🧩 **Workflow Steps**
 
-Get incident details
+**1.Trigger:** Sentinel incident
 
-Parse JSON:
+**2.Get incident details**
 
-Content: @{triggerBody()?['Entities']}
+**3.Parse JSON:**
 
-Initialize variable: summary (String)
+- **Content: ```@{triggerBody()?['Entities']}```
 
-For each entity: body('Parse_JSON')
+**4.Initialize variable:** ``summary`` (String)
 
-Condition: toLower(coalesce(item()?['Type'], item()?['$type'])) == 'ip'
+**5.For each entity:** ``body('Parse_JSON')``
 
-Append to summary:
+**6.Condition:** ``toLower(coalesce(item()?['Type'], item()?['$type'])) == 'ip'``
 
-concat('• IP: ', coalesce(item()?['Address'], item()?['IpAddress']), '\n')
+**7.Append to summary:**
 
-Add comment: variables('summary')
+```concat('• IP: ', coalesce(item()?['Address'], item()?['IpAddress']), '\n')```
+
+**8.Add comment:** ```variables('summary')```
 
 • IP: 185.220.101.8
 • IP: 103.21.244.1
