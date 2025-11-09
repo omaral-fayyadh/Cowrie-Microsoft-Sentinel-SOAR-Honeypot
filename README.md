@@ -89,7 +89,7 @@ This playbook automatically:
 |----------------------|-----------|
 | Honeypot             | Cowrie (SSH/Telnet) |
 | Cloud Platform       | Azure Virtual Machine |
-| Log Ingestion        | Azure Monitor Agent (AMA), Data Collection Rules (DCR) |
+| Log Ingestion        | Azure Monitor Agent (AMA), Data Collection Rules (DCR), **Custom Table** `Cowrie_CL_CL` |
 | SIEM                 | Microsoft Sentinel |
 | SOAR                 | Azure Logic Apps |
 | Detection            | KQL Analytics Rules |
@@ -155,7 +155,7 @@ Full details in ```text docs/02-azure-setup.md ```
 | 2222            | Cowrie SSH     | TCP          |
 | 2223            | Cowrie Telnet  | TCP          |
 
-|⚠️ Warning: Never host a honeypot inside private or production networks.
+⚠️ Warning: Never host a honeypot inside private or production networks.
 
 🎣 Deploying Cowrie (Docker)
 ---
@@ -292,7 +292,7 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 
 This project captures real-world attacker telemetry, forwards it to Sentinel, and enriches incidents automatically — demonstrating an end-to-end threat detection and automation pipeline built entirely on Microsoft Azure.
 
-|💡 From honeypot to SOAR — every alert now tells a story.
+💡 From honeypot to SOAR — every alert now tells a story.
 ---
 📄 License
 
