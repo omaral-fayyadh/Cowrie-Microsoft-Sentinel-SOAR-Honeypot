@@ -44,6 +44,7 @@ Logic App (Playbook)
   Parse Entities → Filter IPs → Append Summary → Post Comment
 ```
 
+---
 
 ## 🎯 Project Objectives
 
@@ -56,9 +57,9 @@ Logic App (Playbook)
 ✅ Showcase an **end-to-end defensive architecture**
 
 
-
+---
 💡 Why This Matters
-
+---
 Security analysts handle dozens of alerts per shift. Automating triage saves valuable time by immediately adding context like:
 
 🔁 Repeated attacker IPs
