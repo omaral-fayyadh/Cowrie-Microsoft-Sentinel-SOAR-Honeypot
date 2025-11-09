@@ -72,15 +72,15 @@ Security analysts handle dozens of alerts per shift. Automating triage saves val
 
 This playbook automatically:
 
-Extracts entities
+1. Extracts entities
 
-Loops through each indicator
+2. Loops through each indicator
 
-Filters by type (IPs)
+3. Filters by type (IPs)
 
-Formats a triage summary
+4. Formats a triage summary
 
-Posts results into the Sentinel incident comment pane
+5. Posts results into the Sentinel incident comment pane
 
 ✨ Impact: Small automation, huge SOC efficiency gain.
 
