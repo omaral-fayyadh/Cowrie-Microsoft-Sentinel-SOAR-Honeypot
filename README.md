@@ -87,16 +87,19 @@ This playbook automatically:
 
 🔐 Technologies Used
 ---
-Category	         Tools
----
-Honeypot	Cowrie   (SSH/Telnet)
-Cloud Platform	   Azure Virtual Machine
-Log Ingestion	    Azure Monitor Agent (AMA), Data Collection Rules (DCR)
-SIEM	             Microsoft Sentinel
-SOAR	             Azure Logic Apps
-Detection	        KQL Analytics Rules
-Entity Modeling	  Microsoft Defender XDR
-Containerization	 Docker
+## 🔐 Technologies Used
+
+| **Category**        | **Tools** |
+|----------------------|-----------|
+| Honeypot             | Cowrie (SSH/Telnet) |
+| Cloud Platform       | Azure Virtual Machine |
+| Log Ingestion        | Azure Monitor Agent (AMA), Data Collection Rules (DCR) |
+| SIEM                 | Microsoft Sentinel |
+| SOAR                 | Azure Logic Apps |
+| Detection            | KQL Analytics Rules |
+| Entity Modeling      | Microsoft Defender XDR |
+| Containerization     | Docker |
+
 
 🧱 Architecture Diagram
 ---
