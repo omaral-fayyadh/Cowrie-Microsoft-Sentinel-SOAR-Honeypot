@@ -48,7 +48,6 @@ Logic App (Playbook)
 
 ## 🎯 Project Objectives
 
-
 ✅ Deploy an Internet-facing honeypot to collect attacker telemetry  
 ✅ Route security events into Microsoft Sentinel  
 ✅ Generate incidents from suspicious behavior  
@@ -56,10 +55,10 @@ Logic App (Playbook)
 ✅ Demonstrate **SOAR and Cloud Security Engineering** skills  
 ✅ Showcase an **end-to-end defensive architecture**
 
-
 ---
 💡 Why This Matters
 ---
+
 Security analysts handle dozens of alerts per shift. Automating triage saves valuable time by immediately adding context like:
 
 🔁 Repeated attacker IPs
@@ -84,9 +83,6 @@ This playbook automatically:
 
 ✨ Impact: Small automation, huge SOC efficiency gain.
 
-
-🔐 Technologies Used
----
 ## 🔐 Technologies Used
 
 | **Category**        | **Tools** |
@@ -99,7 +95,6 @@ This playbook automatically:
 | Detection            | KQL Analytics Rules |
 | Entity Modeling      | Microsoft Defender XDR |
 | Containerization     | Docker |
-
 
 🧱 Architecture Diagram
 ---
