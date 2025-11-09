@@ -176,16 +176,17 @@ sudo docker logs -f cowrie
 📥 Log Ingestion to Sentinel
 ---
 
-++Install Azure Monitor Agent (AMA)
+++Install Azure Monitor Agent (AMA)++
 
-++Create a Data Collection Rule (DCR) targeting ```/opt/cowrie-data/cowrie.json```
+++Create a Data Collection Rule (DCR) targeting ```/opt/cowrie-data/cowrie.json```++
 
-++Output to a custom table: Cowrie_CL
+++Output to a custom table: Cowrie_CL++
 
 Example validation query:
-
-Cowrie_CL
+```
+Cowrie_CL_CL
 | take 5
+```
 
 🔔 Analytics Rule (KQL)
 ---
