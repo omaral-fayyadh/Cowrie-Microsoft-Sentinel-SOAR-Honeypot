@@ -227,35 +227,25 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 
 **8.Add comment:** ```variables('summary')```
 
+📝 Example Output (Incident Comment)
+---
+```
 • IP: 185.220.101.8
 • IP: 103.21.244.1
 • IP: 45.133.1.12
-
-📸 Recommended Screenshots
-
-Store in /assets/:
-
-Logic App designer
-
-Sentinel incident comment
-
-NSG inbound rules
-
-Cowrie docker logs
-
-KQL query results
-
+```
 ✅ Validation Checklist
+---
 
- Cowrie receiving hits on ports 2222/2223
+ - [x] Cowrie receiving hits on ports 2222/2223
 
- Logs populating custom table Cowrie_CL
+ - [x] Logs populating custom table ```Cowrie_CL_CL```
 
- Analytics rule triggers incidents
+ - [x] Analytics rule triggers incidents
 
- Playbook executes successfully
+ - [x] Playbook executes successfully
 
- Comment appears in Sentinel incident
+ - [x] Comment appears in Sentinel incident
 
 🧠 Lessons Learned
 
