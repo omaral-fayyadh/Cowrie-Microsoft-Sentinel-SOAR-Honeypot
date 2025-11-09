@@ -1,4 +1,4 @@
-<div align="center">
+ <div align="center">
 
 # 🛡️ Cowrie Honeypot → Microsoft Sentinel SOAR Automation (End-to-End)
 
@@ -25,7 +25,7 @@ This reduces analyst triage time and surfaces actionable threat intelligence wit
 
 ## 🚀 High-Level Flow
 
-```text
+
 Internet Attackers
         │
         ▼
