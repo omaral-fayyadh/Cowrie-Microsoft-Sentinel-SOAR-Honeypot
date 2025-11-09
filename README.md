@@ -44,14 +44,19 @@ Logic App (Playbook)
   Parse Entities → Filter IPs → Append Summary → Post Comment
 
 
-🎯 Project Objectives
+---
 
-✅ Deploy an Internet-facing honeypot to collect attacker telemetry
-✅ Route security events into Microsoft Sentinel
-✅ Generate incidents from suspicious behavior
-✅ Automate enrichment inside the incident response workflow
-✅ Demonstrate SOAR and Cloud Security Engineering skills
-✅ Showcase an end-to-end defensive architecture
+## 🎯 Project Objectives
+
+✅ Deploy an Internet-facing honeypot to collect attacker telemetry  
+✅ Route security events into Microsoft Sentinel  
+✅ Generate incidents from suspicious behavior  
+✅ Automate enrichment inside the incident response workflow  
+✅ Demonstrate **SOAR and Cloud Security Engineering** skills  
+✅ Showcase an **end-to-end defensive architecture**
+
+---
+
 
 💡 Why This Matters
 
