@@ -139,7 +139,7 @@ This playbook automatically:
 
 🛠️ Azure Deployment Steps
 ---
-Full details in ```docs/02-azure-setup.md ```
+Full details in `docs/02-azure-setup.md`
 
 **1. Create the VM**
 
@@ -273,7 +273,7 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 
 - End-to-end SIEM + SOAR pipeline buildout
 
-|👩‍💻 This mirrors workflows of SOC Automation Engineers, Cloud Security Analysts, and Detection Engineers.
+👩‍💻 This mirrors workflows of SOC Automation Engineers, Cloud Security Analysts, and Detection Engineers.
 
 🔮 Future Enhancements
 ---
