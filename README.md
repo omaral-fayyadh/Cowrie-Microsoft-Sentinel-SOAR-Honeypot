@@ -302,5 +302,11 @@ This project captures real-world attacker telemetry, forwards it to Sentinel, an
 
 MIT © 2025 Omar Alfayyadh
 ---
-🧩 *Built and documented by Omar Al-Fayyadh — demonstrating hands-on SIEM, SOAR, and cloud security automation engineering skills.*
+---
+
+<div align="center">
+
+🧩 *Built and documented by **Omar Alfayyadh** — demonstrating hands-on SIEM, SOAR, and cloud security automation engineering skills.*
+
+</div>
 
