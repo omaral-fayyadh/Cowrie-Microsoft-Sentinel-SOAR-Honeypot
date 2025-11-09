@@ -1,11 +1,3 @@
-# 🛡️ Cowrie Honeypot → Microsoft Sentinel SOAR Automation (End-to-End)
-
-![Azure](https://img.shields.io/badge/Azure-Cloud-blue?logo=microsoftazure)
-![Microsoft Sentinel](https://img.shields.io/badge/Microsoft%20Sentinel-SIEM-blue?logo=microsoft)
-![SOAR](https://img.shields.io/badge/SOAR-Automation-green)
-![Docker](https://img.shields.io/badge/Docker-Container-lightblue?logo=docker)
-![KQL](https://img.shields.io/badge/KQL-Detection-orange?logo=databricks)
-
 <div align="center">
 
 # 🛡️ Cowrie Honeypot → Microsoft Sentinel SOAR Automation (End-to-End)
