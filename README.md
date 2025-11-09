@@ -191,13 +191,13 @@ Cowrie_CL_CL
 ---
 
 Detect repeated attacker attempts and create incidents automatically:
-```
+
+```kql
 Cowrie_CL_CL
 | extend Ip = coalesce(src_ip, tostring(src_ip_s))
 | summarize AttemptCount = count() by Ip
 | where AttemptCount > 5
 
-```
 
 📄 Template: `analytics/cowrie-incident-rule.json`
 
