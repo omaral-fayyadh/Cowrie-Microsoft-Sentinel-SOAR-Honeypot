@@ -47,6 +47,7 @@ Logic App (Playbook)
 ---
 
 ## 🎯 Project Objectives
+---
 
 ✅ Deploy an Internet-facing honeypot to collect attacker telemetry  
 ✅ Route security events into Microsoft Sentinel  
@@ -55,7 +56,6 @@ Logic App (Playbook)
 ✅ Demonstrate **SOAR and Cloud Security Engineering** skills  
 ✅ Showcase an **end-to-end defensive architecture**
 
----
 
 
 💡 Why This Matters
