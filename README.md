@@ -96,6 +96,7 @@ Containerization	Docker
 
 🧱 Architecture Diagram
 
+```text
 +--------------------+
 |  Attackers         |
 |  Internet Traffic  |
@@ -132,6 +133,7 @@ Containerization	Docker
 | Loop IPs           |
 | Comment Incident   |
 +--------------------+
+```
 
 🛠️ Azure Deployment Steps
 
