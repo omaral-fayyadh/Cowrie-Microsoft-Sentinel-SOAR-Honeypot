@@ -33,7 +33,7 @@ Azure VM (Ubuntu) running Cowrie (ports 2222/2223)
         │  cowrie.json logs
         ▼
 Azure Monitor Agent (AMA) + Data Collection Rule (DCR)
-        │  custom table (Cowrie_CL)
+        │  custom table (Cowrie_CL_CL)
         ▼
 Microsoft Sentinel (Log Analytics Workspace)
         │
@@ -113,7 +113,7 @@ This playbook automatically:
           v
 +--------------------+
 | Azure Monitor Agent|
-| DCR → Cowrie_CL    |
+| DCR → Cowrie_CL_CL |
 +---------+----------+
           |
           v
@@ -275,6 +275,7 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 |👩‍💻 This mirrors workflows of SOC Automation Engineers, Cloud Security Analysts, and Detection Engineers.
 
 🔮 Future Enhancements
+---
 
 🌍 GeoIP + ASN enrichment
 
@@ -287,11 +288,12 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 👥 Auto-assign analysts based on workload
 
 🏁 Conclusion
+---
 
 This project captures real-world attacker telemetry, forwards it to Sentinel, and enriches incidents automatically — demonstrating an end-to-end threat detection and automation pipeline built entirely on Microsoft Azure.
 
-💡 From honeypot to SOAR — every alert now tells a story.
-
+|💡 From honeypot to SOAR — every alert now tells a story.
+---
 📄 License
 
 MIT © 2025 Omar Alfayyadh
