@@ -178,7 +178,7 @@ sudo docker logs -f cowrie
 
 **Install Azure Monitor Agent (AMA)
 
-Create a Data Collection Rule (DCR) ```text targeting /opt/cowrie-data/cowrie.json```
+Create a Data Collection Rule (DCR) targeting ```/opt/cowrie-data/cowrie.json```
 
 Output to a custom table: Cowrie_CL
 
@@ -188,6 +188,7 @@ Cowrie_CL
 | take 5
 
 🔔 Analytics Rule (KQL)
+---
 
 Detect repeated attacker attempts and create incidents automatically:
 
@@ -203,7 +204,7 @@ Cowrie_CL
 This Logic App parses incident entities, loops through indicators, extracts IPs, builds a summary, and posts it back into the incident.
 
 🧩 Workflow Steps
-
+---
 Trigger: Sentinel incident
 
 Get incident details
