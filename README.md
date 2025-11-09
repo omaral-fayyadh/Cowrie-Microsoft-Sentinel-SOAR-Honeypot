@@ -156,7 +156,6 @@ Full details in ```text docs/02-azure-setup.md ```
 | 2223            | Cowrie Telnet  | TCP          |
 
 |⚠️ Warning: Never host a honeypot inside private or production networks.
----
 
 🎣 Deploying Cowrie (Docker)
 ---
@@ -248,30 +247,32 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
  - [x] Comment appears in Sentinel incident
 
 🧠 Lessons Learned
+---
 
-Entity schemas differ between alerts
+- Entity schemas differ between alerts
 
-Always handle $type and Type casing
+- Always handle $type and Type casing
 
-Export Logic Apps for reusability
+- Export Logic Apps for reusability
 
-AMA + DCR combo simplifies log forwarding
+- AMA + DCR combo simplifies log forwarding
 
-SOAR automation greatly reduces triage fatigue
+- SOAR automation greatly reduces triage fatigue
 
 🎓 Professional Takeaways
+---
 
-Cloud-native SOC automation
+- Cloud-native SOC automation
 
-Real-world threat telemetry ingestion
+- Real-world threat telemetry ingestion
 
-KQL-based detection engineering
+- KQL-based detection engineering
 
-Incident enrichment & response automation
+- Incident enrichment & response automation
 
-End-to-end SIEM + SOAR pipeline buildout
+- End-to-end SIEM + SOAR pipeline buildout
 
-👩‍💻 This mirrors workflows of SOC Automation Engineers, Cloud Security Analysts, and Detection Engineers.
+|👩‍💻 This mirrors workflows of SOC Automation Engineers, Cloud Security Analysts, and Detection Engineers.
 
 🔮 Future Enhancements
 
