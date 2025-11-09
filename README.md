@@ -297,4 +297,6 @@ This project captures real-world attacker telemetry, forwards it to Sentinel, an
 📄 License
 
 MIT © 2025 Omar Alfayyadh
+---
+🧩 *Built and documented by Omar Alfayyadh — demonstrating hands-on SIEM, SOAR, and cloud security automation engineering skills.*
 
