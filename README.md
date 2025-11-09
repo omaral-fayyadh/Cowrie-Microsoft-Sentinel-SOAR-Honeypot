@@ -139,7 +139,7 @@ This playbook automatically:
 
 🛠️ Azure Deployment Steps
 ---
-Full details in ```text docs/02-azure-setup.md ```
+Full details in ```docs/02-azure-setup.md ```
 
 **1. Create the VM**
 
