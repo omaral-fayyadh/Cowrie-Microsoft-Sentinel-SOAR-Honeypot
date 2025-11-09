@@ -63,3 +63,50 @@ It’s small automation with **large SOC impact**.
 
 ## 🧱 Architecture Diagram
 
+
+---
+
+## 🛠 Azure Deployment Steps
+
+Full details in [`docs/02-azure-setup.md`](docs/02-azure-setup.md)
+
+- Create Ubuntu VM  
+- Ensure NSG inbound rules for:
+  - TCP 2222 (Cowrie SSH)  
+  - TCP 2223 (Cowrie Telnet)  
+- Install Docker  
+- Run Cowrie container  
+- Validate logs  
+
+> ⚠️ Honeypots should not be placed inside private networks.
+
+---
+
+## 🎣 Deploying Cowrie (Docker)
+
+```bash
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo docker run -d --name cowrie \
+  -p 2222:2222 -p 2223:2223 \
+  cowrie/cowrie:latest
+
+sudo docker logs -f cowrie
+
+Cowrie_CL
+| take 5
+
+Cowrie_CL
+| extend Ip = coalesce(src_ip, tostring(src_ip_s))
+| summarize AttemptCount = count() by Ip
+| where AttemptCount > 5
+
+• IP: 185.220.101.8
+• IP: 103.21.244.1
+• IP: 45.133.1.12
+
+
+---
+
+✅ Simply paste this directly **after** your last line in `README.md` and it will complete the document.  
+Would you like me to include the **badges (Azure, Sentinel, SOAR, Docker)** right under the title as a finishing touch for professional polish?
