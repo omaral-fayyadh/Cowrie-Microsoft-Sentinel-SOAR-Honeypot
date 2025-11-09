@@ -138,27 +138,29 @@ This playbook automatically:
 ```
 
 🛠️ Azure Deployment Steps
+---
+Full details in ```text docs/02-azure-setup.md ```
 
-Full details in docs/02-azure-setup.md
+**1. Create the VM**
 
-1. Create the VM
+**OS:** Ubuntu LTS  
+**Size:** B1s (sufficient for testing)  
+**Authentication:** SSH Key  
+**Public IP:** Static
 
-OS: Ubuntu LTS
 
-Size: B1s (sufficient for testing)
+**2. Configure NSG Rules**
+| **port**        | **Purpose**    | **Protocol** |
+|-----------------|----------------|--------------|
+| 2222            | Cowrie SSH     | TCP          |
+| 2223            | Cowrie Telnet  | TCP          |
 
-Authentication: SSH Key
-
-Public IP: Static
-
-2. Configure NSG Rules
-Port	Purpose	Protocol
-2222	Cowrie SSH	TCP
-2223	Cowrie Telnet	TCP
-
-⚠️ Warning: Never host a honeypot inside private or production networks.
+|⚠️ Warning: Never host a honeypot inside private or production networks.
+---
 
 🎣 Deploying Cowrie (Docker)
+---
+```text
 sudo apt-get update
 sudo apt-get install -y docker.io
 sudo systemctl enable --now docker
@@ -169,12 +171,14 @@ sudo docker run -d --name cowrie \
 
 View live logs:
 sudo docker logs -f cowrie
+```
 
 📥 Log Ingestion to Sentinel
+---
 
-Install Azure Monitor Agent (AMA)
+**Install Azure Monitor Agent (AMA)
 
-Create a Data Collection Rule (DCR) targeting /opt/cowrie-data/cowrie.json
+Create a Data Collection Rule (DCR) ```text targeting /opt/cowrie-data/cowrie.json```
 
 Output to a custom table: Cowrie_CL
 
