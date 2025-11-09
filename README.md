@@ -192,16 +192,17 @@ Cowrie_CL_CL
 ---
 
 Detect repeated attacker attempts and create incidents automatically:
-
-Cowrie_CL
+```
+Cowrie_CL_CL
 | extend Ip = coalesce(src_ip, tostring(src_ip_s))
 | summarize AttemptCount = count() by Ip
 | where AttemptCount > 5
+```
 
-📄 Template: analytics/cowrie-incident-rule.json
+📄 Template: ```analytics/cowrie-incident-rule.json```
 
 🤖 Sentinel Playbook (Logic App)
-
+---
 This Logic App parses incident entities, loops through indicators, extracts IPs, builds a summary, and posts it back into the incident.
 
 🧩 Workflow Steps
