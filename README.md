@@ -25,7 +25,7 @@ This reduces analyst triage time and surfaces actionable threat intelligence wit
 
 ## 🚀 High-Level Flow
 
-
+```text
 Internet Attackers
         │
         ▼
@@ -42,9 +42,9 @@ Scheduled Analytics Rule triggers Incident
         ▼
 Logic App (Playbook)
   Parse Entities → Filter IPs → Append Summary → Post Comment
+```
 
 
-<!-- -->
 ## 🎯 Project Objectives
 
 
