@@ -217,7 +217,7 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 
 **3.Parse JSON:**
 
-- **Content: ```@{triggerBody()?['Entities']}```
+- **Content:** ```@{triggerBody()?['Entities']}```
 
 **4.Initialize variable:** ``summary`` (String)
 
