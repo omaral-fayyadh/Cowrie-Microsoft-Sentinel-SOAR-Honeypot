@@ -251,6 +251,12 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 
  - [x] Comment appears in Sentinel incident
 
+## 📸 Proof of Implementation
+---
+
+### 🧠 Logic App Workflow
+![Logic App Workflow](./assets/Logic%20App%20Workflow.jpg)
+
 🧠 Lessons Learned
 ---
 
