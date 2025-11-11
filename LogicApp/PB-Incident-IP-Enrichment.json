@@ -1,0 +1,197 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "contentVersion": "1.0.0.0",
+        "triggers": {
+            "Microsoft_Sentinel_incident": {
+                "type": "ApiConnectionWebhook",
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                        }
+                    },
+                    "body": {
+                        "callback_url": "@{listCallbackUrl()}"
+                    },
+                    "path": "/incident-creation"
+                }
+            }
+        },
+        "actions": {
+            "EntitiesRaw": {
+                "type": "Compose",
+                "inputs": "@{coalesce(triggerBody()?['object']?['properties']?['relatedEntities'], triggerBody()?['object']?['properties']?['entities'], triggerBody()?['Entities'], triggerBody()?['object']?['properties']?['additionalData']?['entities'])}",
+                "runAfter": {}
+            },
+            "EntitiesText": {
+                "type": "Compose",
+                "inputs": "@{string(outputs('EntitiesRaw'))}",
+                "runAfter": {
+                    "EntitiesRaw": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "EntitiesFixedText": {
+                "type": "Compose",
+                "inputs": "@{if(or(equals(outputs('EntitiesText'), ''), equals(outputs('EntitiesText'), 'null')), '[]', outputs('EntitiesText'))}",
+                "runAfter": {
+                    "EntitiesText": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Parse_JSON": {
+                "type": "ParseJson",
+                "inputs": {
+                    "content": "@{json(outputs('EntitiesFixedText'))}",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": true,
+                            "properties": {
+                                "$type": {
+                                    "type": "string"
+                                },
+                                "Type": {
+                                    "type": "string"
+                                },
+                                "Address": {
+                                    "type": "string"
+                                },
+                                "IpAddress": {
+                                    "type": "string"
+                                },
+                                "HostName": {
+                                    "type": "string"
+                                },
+                                "Name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "runAfter": {
+                    "EntitiesFixedText": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Initialize_variables": {
+                "type": "InitializeVariable",
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "summary",
+                            "type": "string",
+                            "value": ""
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Parse_JSON": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "For_each": {
+                "type": "Foreach",
+                "foreach": "@body('Parse_JSON')",
+                "actions": {
+                    "Append_if_IP": {
+                        "type": "If",
+                        "expression": {
+                            "equals": [
+                                "@toLower(coalesce(item()?['Type'], item()?['$type']))",
+                                "ip"
+                            ]
+                        },
+                        "actions": {
+                            "Append_to_string_variable": {
+                                "type": "AppendToStringVariable",
+                                "inputs": {
+                                    "name": "summary",
+                                    "value": "@{concat('• IP: ', coalesce(item()?['Address'], item()?['IpAddress']), '\\n')}"
+                                }
+                            }
+                        },
+                        "else": {
+                            "actions": {}
+                        }
+                    }
+                },
+                "runAfter": {
+                    "Initialize_variables": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "If_summary_not_empty": {
+                "type": "If",
+                "expression": {
+                    "not": [
+                        {
+                            "equals": [
+                                "@variables('summary')",
+                                ""
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "Add_comment_to_incident_(V3)": {
+                        "type": "ApiConnection",
+                        "inputs": {
+                            "host": {
+                                "connection": {
+                                    "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                                }
+                            },
+                            "method": "post",
+                            "body": {
+                                "incidentArmId": "@{coalesce(triggerBody()?['object']?['id'], triggerBody()?['object']?['properties']?['incidentArmId'], triggerBody()?['IncidentArmId'])}",
+                                "message": "<p class=\"editor-paragraph\">@{variables('summary')}</p>"
+                            },
+                            "path": "/Incidents/Comment"
+                        }
+                    }
+                },
+                "else": {
+                    "actions": {}
+                },
+                "runAfter": {
+                    "For_each": [
+                        "Succeeded"
+                    ]
+                }
+            }
+        },
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "type": "Object",
+                "defaultValue": {}
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "type": "Object",
+            "value": {
+                "azuresentinel": {
+                    "id": "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/providers/Microsoft.Web/locations/eastus/managedApis/azuresentinel",
+                    "connectionId": "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourceGroups/honeypot-rg/providers/Microsoft.Web/connections/azuresentinel-PB-Incident-IP-Enrichment",
+                    "connectionName": "azuresentinel-PB-Incident-IP-Enrichment",
+                    "connectionProperties": {
+                        "authentication": {
+                            "type": "ManagedServiceIdentity"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
