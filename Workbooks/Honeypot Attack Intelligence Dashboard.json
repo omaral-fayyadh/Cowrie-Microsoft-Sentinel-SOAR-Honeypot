@@ -1,0 +1,204 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "3a55a764-fe31-4e99-a4d0-5c91a7c5d1ea",
+            "key": "3a55a764-fe31-4e99-a4d0-5c91a7c5d1ea",
+            "name": "TimeRange",
+            "value": {
+              "durationMs": 86400000
+            },
+            "type": 4,
+            "version": "",
+            "description": "TimeRange",
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 86400000
+                }
+              ],
+              "allowCustom": false
+            }
+          }
+        ],
+        "style": "pills"
+      },
+      "name": "TimeRange",
+      "id": "0dbe8e3e-0e21-414b-93be-f38e3a02d2a9"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "33052b14-c38d-4a26-9f64-60dd6fcd0c52",
+            "key": "33052b14-c38d-4a26-9f64-60dd6fcd0c52",
+            "name": "MinAttempts",
+            "value": "10",
+            "type": 1,
+            "version": "",
+            "description": "MinAttempts"
+          }
+        ],
+        "style": "pills"
+      },
+      "name": "MinAttempts",
+      "id": "4132fc22-67a7-430d-8cf7-ba68106a4573"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Cowrie_CL_CL\r\n| summarize attempts = count() by src_ip\r\n| where attempts >= toint('{MinAttempts}')\r\n| top 20 by attempts desc\r\n",
+        "size": 0,
+        "title": "Top Attacker IPs",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "barchart",
+        "crossComponentResources": [
+          "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+        ]
+      },
+      "name": "Top Attacker IPs",
+      "id": "a9320890-d103-479b-91c1-203057e70bba"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let CowrieBase =\r\n    Cowrie_CL_CL\r\n    | extend EventTime = coalesce(timestamp, TimeGenerated)\r\n    | extend kex = tostring(kexAlgs), key = tostring(keyAlgs), mac = tostring(macCS),\r\n             lang = tostring(langCS), comp = tostring(compCS), msg = tostring(message);\r\nCowrieBase\r\n| summarize attempts = count() by bin(EventTime, 1h)\r\n| order by EventTime asc\r\n",
+        "size": 0,
+        "title": "Attempts over time (per hour)",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "timechart",
+        "crossComponentResources": [
+          "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+        ]
+      },
+      "name": "Attempts over time (per hour)",
+      "id": "5f9c6d89-d77c-4ec7-8f73-d90898431f75"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let CowrieBase =\r\n    Cowrie_CL_CL\r\n    | extend EventTime = coalesce(timestamp, TimeGenerated)\r\n    | extend kex = tostring(kexAlgs), key = tostring(keyAlgs), mac = tostring(macCS),\r\n             lang = tostring(langCS), comp = tostring(compCS), msg = tostring(message);\r\nCowrieBase\r\n| summarize attempts = count() by src_ip\r\n| where attempts >= toint('{MinAttempts}')\r\n| top 25 by attempts desc\r\n",
+        "size": 0,
+        "title": "Top Offenders",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "barchart",
+        "crossComponentResources": [
+          "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+        ]
+      },
+      "name": "Top Offenders",
+      "id": "596612b7-b396-4faa-bd91-e12282dbee96"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let CowrieBase =\r\n    Cowrie_CL_CL\r\n    | extend EventTime = coalesce(timestamp, TimeGenerated)\r\n    | extend kex = tostring(kexAlgs), key = tostring(keyAlgs), mac = tostring(macCS),\r\n             lang = tostring(langCS), comp = tostring(compCS), msg = tostring(message);\r\n\r\nCowrieBase\r\n| extend subnet24 = strcat(split(src_ip, \".\", 0), \".\",\r\n                           split(src_ip, \".\", 1), \".\",\r\n                           split(src_ip, \".\", 2), \".0/24\")\r\n| summarize attempts = count(), distinctIPs = dcount(src_ip) by subnet24\r\n| where attempts >= toint('{MinAttempts}')\r\n| top 20 by attempts desc\r\n",
+        "size": 0,
+        "title": "Top attacking /24 subnets",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "barchart",
+        "crossComponentResources": [
+          "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+        ]
+      },
+      "name": "Top attacking /24 subnets",
+      "id": "3c496a8a-74fd-4d8b-b16c-5f766979d3e1"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let CowrieBase =\r\n    Cowrie_CL_CL\r\n    | extend EventTime = coalesce(timestamp, TimeGenerated)\r\n    | extend kex = tostring(kexAlgs), key = tostring(keyAlgs), mac = tostring(macCS),\r\n             lang = tostring(langCS), comp = tostring(compCS), msg = tostring(message);\r\nCowrieBase\r\n| summarize attempts=count(), firstSeen=min(EventTime), lastSeen=max(EventTime) by src_ip\r\n| where attempts >= toint('{MinAttempts}')\r\n| order by attempts desc\r\n",
+        "size": 0,
+        "title": "First/last seen per IP",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "table",
+        "crossComponentResources": [
+          "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+        ]
+      },
+      "name": "First/last seen per IP",
+      "id": "b9a62b93-44aa-406d-bd8b-a6e08450291c"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let CowrieBase =\r\n    Cowrie_CL_CL\r\n    | extend EventTime = coalesce(timestamp, TimeGenerated)\r\n    | extend kex = tostring(kexAlgs), key = tostring(keyAlgs), mac = tostring(macCS),\r\n             lang = tostring(langCS), comp = tostring(compCS), msg = tostring(message);\r\nCowrieBase\r\n| where isnotempty(username)\r\n| summarize attempts = count() by username\r\n| where attempts >= toint('{MinAttempts}')\r\n| top 25 by attempts desc\r\n",
+        "size": 0,
+        "title": "Top usernames",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "headingLevel": 6,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "barchart",
+        "crossComponentResources": [
+          "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+        ]
+      },
+      "name": "Top usernames",
+      "id": "fe3eaaa3-5ea0-4b56-acf9-727db8d35da6"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let CowrieBase =\r\n    Cowrie_CL_CL\r\n    | extend EventTime = coalesce(timestamp, TimeGenerated)\r\n    | extend kex = tostring(kexAlgs), key = tostring(keyAlgs), mac = tostring(macCS),\r\n             lang = tostring(langCS), comp = tostring(compCS), msg = tostring(message);\r\nCowrieBase\r\n| where isnotempty(password)\r\n| summarize attempts = count() by password\r\n| where attempts >= toint('{MinAttempts}')\r\n| top 25 by attempts desc\r\n",
+        "size": 0,
+        "title": "Top passwords",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "barchart",
+        "crossComponentResources": [
+          "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+        ]
+      },
+      "name": "Top passwords",
+      "id": "f089ad41-89c6-4130-9811-2d1758504788"
+    }
+  ],
+  "isLocked": false,
+  "fallbackResourceIds": [
+    "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+  ],
+  "fromTemplateId": "sentinel-UserWorkbook",
+  "context": {
+    "ownerId": "/subscriptions/52033113-51e3-450e-a7c2-a55c365883cc/resourcegroups/honeypot-rg/providers/microsoft.operationalinsights/workspaces/law-honeypot-sentinel"
+  }
+}
