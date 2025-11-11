@@ -261,7 +261,7 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 ![Honeypot Dashboard](./assets/Honeypot%20Attack%20Intelligence%20Dashboard%20-%20Image.jpg)
 
 ### 🎬 Demo Video
-https://github.com/omarl-alfayyadh/Cowrie-Microsoft-Sentinel/blob/main/assets/Honeypot%20Attack%20Intelligence%20Dashboard.mp4
+![Honeypot Dashboard](./assets/Honeypot%20Attack%20Intelligence%20Dashboard.mp4)
 
 🧠 Lessons Learned
 ---
