@@ -309,11 +309,11 @@ This Logic App parses incident entities, loops through indicators, extracts IPs,
 
 This project captures real-world attacker telemetry, forwards it to Sentinel, and enriches incidents automatically — demonstrating an end-to-end threat detection and automation pipeline built entirely on Microsoft Azure.
 
-💡 From honeypot to SOAR — every alert now tells a story.
+💡 From honeypot to SOAR — every alert now tells a story. "This pipeline directly inspired HydraSec — a multi-head AI threat intelligence platform built to make those stories explainable."
 ---
 📄 License
 
-MIT © 2025 Omar Alfayyadh
+MIT © 2025 Omar Al-Fayyadh
 ---
 ---
 
